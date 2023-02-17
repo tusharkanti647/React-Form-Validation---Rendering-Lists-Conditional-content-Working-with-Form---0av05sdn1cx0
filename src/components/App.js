@@ -8,33 +8,47 @@ import React, { useState, useRef } from 'react';
  */
 
 function App() {
+  const [data, setData] = useState({ fname: "", lname: "" });
+  const [error, setError] = useState("");
+  const fnameRef = useRef();
+  const emailRef = useRef();
+  /**
+   * code here
+   */
+  const handelfrom = () => {
+    var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
- /**
-  * code here
-  */
+    if (!emailRef.current.value.match(validRegex)) {
+      setError("Email is invalid");
+      return;
+    }
 
-  return(
+    setData({ ...data, fname: fnameRef.current.value, lname: emailRef.current.value });
+
+  }
+
+  return (
     <div className="App">
       <h1>How About Them Apples</h1>
       <form>
         <fieldset>
           <label>
             <p>First Name</p>
-            <input id='fname' name="name"  ref={fnameRef}/>
+            <input id='fname' name="name" ref={fnameRef} />
             <br></br>
             <p>Email</p>
-            <input id='lname' name="name"   ref={emailRef}/>
-            {error && <h2 style={{color: 'red'}}>{error}</h2>}
+            <input id='lname' name="name" ref={emailRef} />
+            {error && <h2 style={{ color: 'red' }}>{error}</h2>}
           </label>
         </fieldset>
 
-        <button id='submit' type="submit">Submit</button>
+        <button id='submit' onClick={handelfrom} type="submit">Submit</button>
       </form>
       {
         data.fname != undefined && (
           <div>
-          <h1>{data.fname}</h1>
-          <h2>{data.lname}</h2>
+            <h1>{data.fname}</h1>
+            <h2>{data.lname}</h2>
           </div>
         )
       }
