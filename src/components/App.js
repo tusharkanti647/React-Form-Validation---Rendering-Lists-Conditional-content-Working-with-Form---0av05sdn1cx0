@@ -19,7 +19,7 @@ function App() {
 
     //event.preventDefault();
     event.preventDefault();
-    console.log("ji");
+    //console.log("ji");
     var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
     if (!emailRef.current.value.match(validRegex)) {
@@ -28,6 +28,8 @@ function App() {
     }
 
     setData({ ...data, fname: fnameRef.current.value, lname: emailRef.current.value });
+    fnameRef.current.value = "";
+    emailRef.current.value = "";
     setError("");
   }
 
