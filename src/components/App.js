@@ -18,11 +18,12 @@ function App() {
   const handelfrom = (event) => {
 
     //event.preventDefault();
-    event.preventDefault();
+
     //console.log("ji");
     var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
     if (!emailRef.current.value.match(validRegex)) {
+      event.preventDefault();
       setError("Email is invalid");
       return;
     }
