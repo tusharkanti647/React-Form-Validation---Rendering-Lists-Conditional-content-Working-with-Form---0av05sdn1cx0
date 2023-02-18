@@ -15,7 +15,11 @@ function App() {
   /**
    * code here
    */
-  const handelfrom = () => {
+  const handelfrom = (event) => {
+
+    //event.preventDefault();
+    event.preventDefault();
+    console.log("ji");
     var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
     if (!emailRef.current.value.match(validRegex)) {
@@ -24,13 +28,13 @@ function App() {
     }
 
     setData({ ...data, fname: fnameRef.current.value, lname: emailRef.current.value });
-
+    setError("");
   }
 
   return (
     <div className="App">
       <h1>How About Them Apples</h1>
-      <form>
+      <form onSubmit={handelfrom}>
         <fieldset>
           <label>
             <p>First Name</p>
@@ -42,7 +46,7 @@ function App() {
           </label>
         </fieldset>
 
-        <button id='submit' onClick={handelfrom} type="submit">Submit</button>
+        <button id='submit' type="submit">Submit</button>
       </form>
       {
         data.fname != undefined && (
